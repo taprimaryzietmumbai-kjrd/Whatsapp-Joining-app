@@ -1,0 +1,106 @@
+const form = document.getElementById('confirmationForm');
+const confirmationList = document.getElementById('confirmationList');
+const previewText = document.getElementById('previewText');
+const whatsappLink = document.getElementById('whatsappLink');
+const refreshBtn = document.getElementById('refreshBtn');
+
+const formatStatus = (status) => status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
+
+function buildPreviewMessage(entry) {
+  const message = entry?.message || 'Hi there, your appointment is ready for confirmation. Please reply YES to confirm.';
+  previewText.textContent = message;
+  const encoded = encodeURIComponent(message);
+  whatsappLink.href = `https://wa.me/?text=${encoded}`;
+}
+
+async function fetchConfirmations() {
+  try {
+    const response = await fetch('/api/confirmations');
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error('Invalid confirmation data');
+    }
+
+    confirmationList.innerHTML = data.map((item) => `
+      <article class="confirmation-card" data-id="${item.id}">
+        <h3>${item.customerName}</h3>
+        <p>${item.service}</p>
+        <div class="meta">
+          <span class="badge ${item.status.toLowerCase()}">${formatStatus(item.status)}</span>
+          <span class="badge">${item.date}</span>
+        </div>
+        <p><strong>Phone:</strong> ${item.phone}</p>
+        <p><strong>Notes:</strong> ${item.notes || 'No notes'}</p>
+        <div class="actions-inline">
+          <button class="status-button pending" data-action="pending" data-id="${item.id}">Pending</button>
+          <button class="status-button confirm" data-action="confirmed" data-id="${item.id}">Confirmed</button>
+        </div>
+      </article>
+    `).join('');
+
+    if (data[0]) {
+      buildPreviewMessage(data[0]);
+    }
+  } catch (error) {
+    confirmationList.innerHTML = '<p>Unable to load confirmations right now.</p>';
+    console.error(error);
+  }
+}
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const payload = {
+    customerName: document.getElementById('customerName').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    service: document.getElementById('service').value.trim(),
+    date: document.getElementById('date').value,
+    notes: document.getElementById('notes').value.trim()
+  };
+
+  try {
+    const response = await fetch('/api/confirmations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Could not save confirmation.');
+    }
+
+    form.reset();
+    await fetchConfirmations();
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+confirmationList.addEventListener('click', async (event) => {
+  const target = event.target.closest('[data-action]');
+  if (!target) return;
+
+  const { id, action } = target.dataset;
+
+  try {
+    const response = await fetch(`/api/confirmations/${id}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: action === 'confirmed' ? 'Confirmed' : 'Pending' })
+    });
+
+    if (!response.ok) {
+      throw new Error('Unable to update status');
+    }
+
+    await fetchConfirmations();
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+refreshBtn.addEventListener('click', fetchConfirmations);
+
+fetchConfirmations();

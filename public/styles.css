@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#128c7e" />
+    <title>WhatsApp Confirmation App</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Business tools</p>
+          <h1>WhatsApp Confirmation App</h1>
+        </div>
+        <button id="refreshBtn" class="ghost-button">Refresh</button>
+      </header>
+
+      <main class="layout">
+        <section class="panel form-panel">
+          <h2>Create confirmation</h2>
+          <form id="confirmationForm">
+            <div class="field-row">
+              <label>
+                Customer name
+                <input id="customerName" name="customerName" type="text" placeholder="John Smith" required />
+              </label>
+              <label>
+                Phone number
+                <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                Service / booking
+                <input id="service" name="service" type="text" placeholder="Dental appointment" required />
+              </label>
+              <label>
+                Date
+                <input id="date" name="date" type="date" required />
+              </label>
+            </div>
+
+            <label>
+              Notes
+              <textarea id="notes" name="notes" rows="4" placeholder="Optional message or reminder"></textarea>
+            </label>
+
+            <div class="actions">
+              <button type="submit" class="primary-button">Save confirmation</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel preview-panel">
+          <h2>WhatsApp preview</h2>
+          <div class="phone-preview">
+            <div class="bubble incoming">
+              <p id="previewText">
+                Hi there, your appointment is ready for confirmation. Please reply YES to confirm.
+              </p>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <a id="whatsappLink" class="whatsapp-button" href="https://wa.me/?text=Hi%20there%2C%20your%20appointment%20is%20ready%20for%20confirmation." target="_blank" rel="noreferrer">
+              Open WhatsApp
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <section class="panel list-panel">
+        <div class="list-header">
+          <h2>Recent confirmations</h2>
+        </div>
+        <div id="confirmationList" class="confirmation-list"></div>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
