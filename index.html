@@ -1,7 +1,44 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#075e54"><title>ZIET Mumbai WhatsApp Joining App</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font:16px/1.5 Arial,sans-serif;color:#122126;background:#f4f7f8}header{background:#075e54;color:white;padding:24px}header>div,main{max-width:1000px;margin:auto}h1{margin:0;font-size:clamp(1.7rem,4vw,2.5rem)}header p{margin:6px 0 0;color:#d6efeb}main{padding:24px 16px}.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:white;border:1px solid #dfe9ec;border-radius:18px;padding:22px;box-shadow:0 8px 25px #00000008}.panel h2{margin:0 0 8px;font-size:1.2rem}.muted{color:#5f6f76;font-size:.92rem}label{display:block;font-weight:700;margin-top:14px}input,textarea{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid #cbd9dd;border-radius:10px;font:inherit}textarea{min-height:80px}button,.btn{border:0;border-radius:10px;padding:12px 15px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}.primary{background:#075e54;color:white}.wa{background:#25d366;color:#0f2b23;width:100%;text-align:center;margin-top:12px}.ghost{background:#eef5f4;color:#075e54}.preview{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f2f3;border-radius:12px;padding:16px;min-height:150px;margin-top:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.list{margin-top:18px}.entry{padding:14px;border:1px solid #dfe9ec;border-radius:12px;margin-top:10px;background:#fbfdfd}.entry h3{margin:0 0 5px}.entry p{margin:5px 0;overflow-wrap:anywhere}.badge{font-size:.8rem;background:#fff4d7;border-radius:20px;padding:4px 8px}.badge.ok{background:#e5f7ef;color:#0b6d52}footer{text-align:center;color:#687a80;font-size:.83rem;padding:0 16px 24px}@media(max-width:700px){.layout{grid-template-columns:1fr}main{padding-top:16px}}
+:root{--ink:#18264b;--muted:#5b6682;--line:#d8e2ff;--purple:#6941c6;--blue:#2563eb;--teal:#087f8c;--pink:#d63384;--gold:#f59e0b;--surface:#fff}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 "Segoe UI",Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eef2ff 0%,#fff1f7 48%,#e7fbff 100%);min-height:100vh}
+header{background:linear-gradient(110deg,#4f46e5 0%,#7c3aed 45%,#db2777 100%);color:#fff;padding:26px 24px;box-shadow:0 7px 24px #4338ca30}
+header>div,main{max-width:1120px;margin:auto}
+h1{margin:0;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.035em;line-height:1.2}
+header p{margin:9px 0 0;color:#f3e8ff;font-size:1rem}
+main{padding:26px 18px}
+.layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:20px;align-items:start}
+.panel{background:rgba(255,255,255,.96);border:1px solid #e1e7ff;border-radius:20px;padding:24px;box-shadow:0 12px 32px #3730a30e}
+.panel h2{margin:0 0 8px;font-size:1.28rem;line-height:1.35;font-weight:800;color:#35216b}
+.panel h2:before{content:"";display:inline-block;width:7px;height:20px;border-radius:8px;background:linear-gradient(#8b5cf6,#ec4899);margin-right:10px;vertical-align:-3px}
+.muted{color:var(--muted);font-size:.95rem}
+label{display:block;font-size:1rem;font-weight:750;color:#303d68;margin-top:16px}
+input,textarea,select{display:block;width:100%;margin-top:7px;padding:13px 14px;border:1.5px solid #cbd5ff;border-radius:12px;background:#f9faff;color:#1f2a50;font:500 1rem/1.45 "Segoe UI",Arial,sans-serif;transition:border-color .18s,box-shadow .18s,background .18s}
+input::placeholder,textarea::placeholder{color:#7b86a5;opacity:1}
+input:hover,textarea:hover,select:hover{border-color:#9d8af7;background:#fff}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#7c3aed;background:#fff;box-shadow:0 0 0 4px #8b5cf726}
+input:disabled,select:disabled{background:#edf0f8;color:#7a849e;cursor:not-allowed}
+textarea{min-height:88px;resize:vertical}
+button,.btn{border:0;border-radius:12px;padding:12px 17px;font:750 1rem/1.35 "Segoe UI",Arial,sans-serif;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:transform .15s,box-shadow .15s,filter .15s}
+button:hover,.btn:hover{transform:translateY(-1px);filter:saturate(1.08);box-shadow:0 7px 16px #312e811c}
+button:focus-visible,.btn:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+.primary{background:linear-gradient(110deg,#5b45db,#7c3aed);color:#fff;box-shadow:0 5px 12px #6d28d926}
+.wa{background:linear-gradient(100deg,#20c96b,#42df91);color:#064e36;width:100%;text-align:center;margin-top:12px;min-height:48px}
+.ghost{background:#f0edff;color:#5033aa;border:1px solid #ded5ff}
+.preview{white-space:pre-wrap;overflow-wrap:anywhere;background:linear-gradient(135deg,#f0f5ff,#fff0f7);border:1px solid #dfe4ff;border-left:5px solid #8b5cf6;border-radius:14px;padding:18px;min-height:155px;margin-top:14px;font-size:1rem;color:#253253}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+#sheetStatus{padding:10px 12px;background:#eefaff;border:1px solid #bdebf5;border-radius:10px;color:#075985}
+.list{margin-top:20px}
+.entry{padding:16px;border:1px solid #dce3ff;border-left:5px solid #8b5cf6;border-radius:14px;margin-top:12px;background:linear-gradient(120deg,#fff,#f8f7ff)}
+.entry h3{margin:0 0 7px;font-size:1.08rem;color:#35216b}
+.entry p{margin:6px 0;overflow-wrap:anywhere}
+.badge{font-size:.84rem;background:#fff0cf;color:#854d0e;border-radius:999px;padding:4px 10px;font-weight:750}
+.badge.ok{background:#d9fbe8;color:#087443}
+footer{text-align:center;color:#6a7391;font-size:.9rem;padding:0 16px 26px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}main{padding:18px 12px}.panel{padding:19px}header{padding:22px 18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
 <header><div><h1>ZIET Mumbai WhatsApp Joining App</h1><p>Create a confirmation, review the message, and send it through WhatsApp.</p></div></header>
 <main><div class="layout"><section class="panel"><h2>Create confirmation</h2><p class="muted">Enter the recipient and booking/workshop details.</p>
